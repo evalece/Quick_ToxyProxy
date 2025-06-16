@@ -1,4 +1,4 @@
-# A quick guide to deploy Shopify's ToxyProxy via Docker. 
+# A Quick Guide To Deploy Shopify's ToxyProxy via Docker. 
 
 ## Steps (using Docker )
 1. Install Toxy CLI 
@@ -22,22 +22,23 @@ double check if this returns lines containing ` "level":"info","address":"0.0.0.
     - Polulating ToxiProxy via -config or mounting to config/toxiproxy.json use [1] format
     - Via Toxy CLI, see example in [1]
 
-## Reference 
-[1] https://github.com/Shopify/toxiproxy?tab=readme-ov-file#cli-example
-
-4. Quick note, to display list of proxy via CLI:
-
-```bash 
-toxiproxy-cli --host=localhost:8474 list  
-```
 
 
-Helpers: 
+## Helpers
 
 1. Docker rebuild
 ```bash
 docker-compose down -v
 docker-compose up --build --force-recreate
 ```
+
+2. Quick note, to display list of proxy via CLI:
+
+```bash 
+toxiproxy-cli --host=localhost:8474 list  
+```
+
+## Reference 
+[1] Shopify, “GitHub - Shopify/toxiproxy: :alarm_clock: A TCP proxy to simulate network and system conditions for chaos and resiliency testing,” GitHub. https://github.com/Shopify/toxiproxy?tab=readme-ov-file#cli-example
 
 Credit for ToxyProxy by Shopify: https://github.com/Shopify/toxiproxy
