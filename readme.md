@@ -35,7 +35,7 @@ toxiproxy-cli --host=localhost:8474 list
 Helpers: 
 
 1. Docker rebuild
-bash```
+```bash
 docker-compose down -v
 docker-compose up --build --force-recreate
 ```
