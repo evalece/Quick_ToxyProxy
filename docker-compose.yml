@@ -10,23 +10,29 @@ services:
   toxiproxy:
     image: ghcr.io/shopify/toxiproxy
     container_name: toxiproxy
+    #environment:
+      #TOXIPROXY_HOST: '0.0.0.0' iff not loading -config
     ports:
-      - "8474:8474"  # Control proxy API
-      - "6380:6380"  # Redis proxy
+      - "8474:8474"  # Control proxy API # side note, a:b, message sent to host port a will be forwared to container port b 
+      - "6380:6380"  # to allow 
     volumes:
-      - ./toxiproxy.json:/config.json
-    command: ["toxiproxy-server", "--config", "/config.json"] #proxy traffic + runtime setting in json
-    environment:
-      - TOXIPROXY_HOST=0.0.0.0
+      - ./toxiproxy.json:/config/toxiproxy.json
+    command:
+      - -config
+      - /config/toxiproxy.json
+      - -host
+      - 0.0.0.0
+
     networks:
-      - benchnet
+      - benchnet #local host not restrited; only containers
 
   redis-client:
     image: redis
     depends_on:
       - toxiproxy
-    entrypoint: ["redis-cli", "-h", "localhost", "-p", "6380"] 
-    tty: true             # Attach terminal
+    # or in container terminal, test connection:  redis-cli -h toxiproxy -p 6380
+    entrypoint: ["redis-cli", "-h", "toxiproxy", "-p", "6380"]  # make sure to change to service name 
+    tty: true      
     networks:
       - benchnet
 

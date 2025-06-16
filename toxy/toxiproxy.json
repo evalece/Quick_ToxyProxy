@@ -1,0 +1,9 @@
+[
+ 
+  {
+    "name": "web_dev_mysql_1",
+    "listen": "[::]:6380",
+    "upstream": "database.domain:6380",
+    "enabled": true
+  }
+]
