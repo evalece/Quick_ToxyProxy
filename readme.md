@@ -1,5 +1,4 @@
-# send RESP command to proxy using a container. 
-
+# A quick guide to deploy Shopify's ToxyProxy via Docker. 
 
 ## Steps (using Docker )
 1. Install Toxy CLI 
@@ -40,3 +39,5 @@ bash```
 docker-compose down -v
 docker-compose up --build --force-recreate
 ```
+
+Credit for ToxyProxy by Shopify: https://github.com/Shopify/toxiproxy
