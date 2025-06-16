@@ -33,13 +33,10 @@ toxiproxy-cli --host=localhost:8474 list
 ```
 
 
-Old:  
-`docker run -it --rm --network benchnet redis redis-cli -h localhost -p yourport`
- 
+Helpers: 
 
- Toxi bind to external; using ENV:   -e TOXIPROXY_HOST=0.0.0.0
-
-Flush using:
-`docker-compose down -v
+1. Docker rebuild
+bash```
+docker-compose down -v
 docker-compose up --build --force-recreate
-`
+```
