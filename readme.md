@@ -37,6 +37,30 @@ docker-compose up --build --force-recreate
 ```bash 
 toxiproxy-cli --host=localhost:8474 list  
 ```
+3. To check if Toxic has been applied:
+
+```bash 
+curl http://localhost:8474/proxies 
+```
+
+4. Toxic must be applied through HTTP method:
+
+```bash 
+curl -X POST http://localhost:8474/proxies/redis_proxy/toxics \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "latency_sim",
+    "type": "latency",
+    "stream": "upstream",
+    "toxicity": 1.0,
+    "attributes": {
+      "latency": 5000
+
+    }
+  }'
+
+
+```
 
 ## Reference 
 [1] Shopify, “GitHub - Shopify/toxiproxy: :alarm_clock: A TCP proxy to simulate network and system conditions for chaos and resiliency testing,” GitHub. https://github.com/Shopify/toxiproxy?tab=readme-ov-file#cli-example
