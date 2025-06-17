@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  redis-client:
+    image: redis
+    depends_on:
+      - toxiproxy
+    # or in container terminal, test connection:  redis-cli -h toxiproxy -p 6380
+    entrypoint: ["redis-cli", "-h", "toxiproxy", "-p", "6380"]  # make sure to change to service name 
+    tty: true      
+    networks:
+      - benchnet
+
+networks:
+  benchnet:
+    driver: bridge

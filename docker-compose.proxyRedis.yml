@@ -1,13 +1,20 @@
 version: '3.8'
 
 services:
+  redis:
+    image: redis
+    container_name: redis
+    networks:
+      - benchnet
+
   toxiproxy:
     image: ghcr.io/shopify/toxiproxy
     container_name: toxiproxy
     #environment:
-      #TOXIPROXY_HOST: '0.0.0.0'
+      #TOXIPROXY_HOST: '0.0.0.0' iff not loading -config
     ports:
       - "8474:8474"  # Control proxy API # side note, a:b, message sent to host port a will be forwared to container port b 
+      - "6380:6380"  # to allow 
     volumes:
       - ./toxiproxy.json:/config/toxiproxy.json
     command:
@@ -17,9 +24,7 @@ services:
       - 0.0.0.0
 
     networks:
-      - benchnet
-
-
+      - benchnet #local host not restrited; only containers
 
 networks:
   benchnet:

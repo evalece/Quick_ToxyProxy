@@ -62,6 +62,8 @@ curl -X POST http://localhost:8474/proxies/redis_proxy/toxics \
 
 ```
 
+5. Optionally, run client and proxy+ Redis in two seperated docker compose 
+
 ## Reference 
 [1] Shopify, “GitHub - Shopify/toxiproxy: :alarm_clock: A TCP proxy to simulate network and system conditions for chaos and resiliency testing,” GitHub. https://github.com/Shopify/toxiproxy?tab=readme-ov-file#cli-example
 
